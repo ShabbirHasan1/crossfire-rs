@@ -70,57 +70,61 @@ Some hidden bug (especially atomic ops on weaker ordering platform) might occur:
 <td align="center" rowspan="4">x86_64</td>
 <td>threaded</td>
 <td><a href="https://github.com/frostyplanet/crossfire-rs/actions/workflows/cron_master_threaded_x86.yml">cron_master_threaded_x86</a> </td>
-<td>PASSED</td>
+<td>STABLE</td>
 </tr>
 <tr><td>tokio 1.47.1</td>
 <td><a href="https://github.com/frostyplanet/crossfire-rs/actions/workflows/cron_master_tokio_x86.yml">cron_master_tokio_x86</a></td>
-<td>PASSED</td>
+<td>STABLE with MULTI-THREADED runtime.<br/>
+ <a href="https://github.com/frostyplanet/crossfire-rs/issues/39#issuecomment-3404391943">rare deadlock</a> happen with CURRENT-THREADED runtime</td>
 </tr>
 <tr><td>async-std</td>
 <td><a href="https://github.com/frostyplanet/crossfire-rs/actions/workflows/cron_master_async_std_x86.yml">cron_master_async_std_x86</a></td>
-<td>PASSED</td>
+<td>STABLE</td>
 </tr>
 <tr><td>smol</td>
 <td><a href="https://github.com/frostyplanet/crossfire-rs/actions/workflows/cron_master_smol_x86.yml">cron_master_smol-x86</a></td>
-<td>PASSED</td>
+<td>STABLE</td>
 <tr><td align="center" rowspan="4">arm</td>
 <td>threaded</td>
 <td>
 <a href="https://github.com/frostyplanet/crossfire-rs/actions/workflows/cron_master_threaded_arm.yml">cron_master_threaded_arm</a><br/>
 </td>
-<td>PASSED</td>
+<td>STABLE</td>
 </tr>
 <tr>
-<td>tokio-1.47.1
+<td>tokio >= 1.48 (<a href="https://github.com/tokio-rs/tokio/pull/7622">tokio PR #7622</a>)
 </td>
 <td>
 <a href="https://github.com/frostyplanet/crossfire-rs/actions/workflows/cron_dev_arm.yml">cron_dev_arm</a><br/>
 <a href="https://github.com/frostyplanet/crossfire-rs/actions/workflows/cron_dev_arm_trace.yml">cron_dev_arm with trace_log</a>
 </td>
-<td>(UNRESOLVED) Use tokio latest master branch which includes <a href="https://github.com/tokio-rs/tokio/pull/7622">tokio PR #7622 (unrelease)</a>, and avoid using current-thread runtime
-(remaining issue: <a href="https://github.com/tokio-rs/tokio/issues/7632">tokio issue 7632 (opened)</a>)
+<td> PASSED with MULTI-THREADED runtime<br/>
+ AVOID CURRENT-THREAD runtime (remaining issue: <a href="https://github.com/tokio-rs/tokio/issues/7632">tokio issue 7632 (opened)</a>
  </td>
 </tr>
 <tr>
 <td>async-std</td>
 <td><a href="https://github.com/frostyplanet/crossfire-rs/actions/workflows/cron_master_async_std_arm.yml">cron_master_async_std_arm</a></td>
-<td>PASSED</td>
+<td>STABLE</td>
 </tr>
 <tr>
 <td>smol</td>
 <td><a href="https://github.com/frostyplanet/crossfire-rs/actions/workflows/cron_master_smol_arm.yml">cron_master_smol_arm</a> </td>
-<td>PASSED</td>
+<td>STABLE</td>
 </tr>
 <tr>
-<td rowspan="3">miri (emulation)</td>
+<td rowspan="4">miri (emulation)</td>
 <td>threaded</td>
 <td rowspan="2"><a href="https://github.com/frostyplanet/crossfire-rs/actions/workflows/miri_dev.yml">miri_dev</a></td>
-<td>PASSED</td>
+<td>STABLE</td>
 </tr>
-<tr><td>tokio-1.47.1<br/><a href="https://github.com/tokio-rs/tokio/pull/7622">tokio PR #7622 (unrelease)</a> </td><td> DEBUGGING</td>
+<tr><td>tokio</td><td> DEBUGGING (see above)</td>
 </tr>
-<tr><td>async-std</td><td>-</td> <td> NOT supported by miri </td>
+<tr><td>async-std</td><td>-</td> <td> (timerfd_create) not supported by miri </td>
 </tr>
+<tr><td>smol</td><td>-</td> <td> (timerfd_create) not supported by miri </td>
+</tr>
+
 </table>
 
 v2.0.26 (legacy):
